@@ -29,14 +29,14 @@ game.EnemyCreep = me.Entity.extend({
     },
     
     loseHealth: function(damage){
-        this.health = this.health - damage;  
+        this.health = this.health - damage; 
+        console.log(this.health);
     },
     
     update: function(delta){
         if(this.health <= 0){
             me.game.world.removeChild(this);
         }
-        
         this.now = new Date().getTime();
         
         this.body.vel.x -= this.body.accel.x * me.timer.tick;

@@ -11,6 +11,13 @@ game.resources = [
         {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
         {name: "title-screen", type:"image", src: "data/img/title.png"},
         {name: "exp-screen", type:"image", src: "data/img/loadpic.png"},
+        {name: "gold-screen", type:"image", src: "data/img/spend.png"},
+        {name: "spear", type:"image", src: "data/img/spear.png"},
+        {name: "sandtiles", type:"image", src: "data/img/sandtiles.png"},
+        {name: "woodpieces", type:"image", src: "data/img/woodpieces.png"},
+        {name: "treetiles", type:"image", src: "data/img/treetiles.png"},
+        {name: "AwesomenautsBG", type:"image", src: "data/img/AwesomenautsBG.png"},
+        
         
 	/* Atlases 
 	 * @example
@@ -22,7 +29,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
-        {name: "level01", type: "tmx", src: "data/map/test.tmx"},
+        {name: "level01", type: "tmx", src: "data/map/level1.tmx"},
 
 
 	/* Background music. 
