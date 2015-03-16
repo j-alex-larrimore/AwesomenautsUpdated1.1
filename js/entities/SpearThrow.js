@@ -14,7 +14,7 @@ game.SpearThrow = me.Entity.extend({
         this.body.setVelocity(8, 0);
         this.attack = game.data.ability3*3;
         this.type = "spear";
-        this.facing = facing
+        this.facing = facing;
     },
     
     update: function(delta){
