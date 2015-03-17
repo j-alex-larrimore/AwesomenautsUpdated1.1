@@ -3,16 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/php/controller/create-user.php</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/php/controller/save-user.php</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/entities/entities.js</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/php/controller/create-db.php</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/screens/spendExp.js</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/screens/title.js</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/screens/loadProfile.js</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/game.js</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/gamemanagers/HeroDeathManager.js</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/php/model/config.php</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/index.php</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/screens/newProfile.js</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/php/controller/login-user.php</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/gamemanagers/GameManager.js</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/screens/play.js</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/resources.js</file>
-            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/entities/entities.js</file>
             <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/gamemanagers/GameTimerManager.js</file>
-            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/js/entities/SpearThrow.js</file>
+            <file>file:/C:/xampp/htdocs/AwesomenautsAlexL/php/controller/logout-user.php</file>
         </group>
     </open-files>
 </project-private>

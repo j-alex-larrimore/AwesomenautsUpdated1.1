@@ -19,15 +19,33 @@ game.ExperienceManager = Object.extend({
             game.data.exp += 1;
         }
         this.gameover = true;
-           document.getElementById("exp").value = game.data.exp;            //Awesomenauts 2 saving
-           document.getElementById("exp1").value = game.data.exp1;
-           document.getElementById("exp2").value = game.data.exp2;
-           document.getElementById("exp3").value = game.data.exp3;
-           document.getElementById("exp4").value = game.data.exp4;
-           
-           console.log(game.data.exp + " " + document.getElementById("exp").value);
-           
-           document.getElementById("save").style.visibility = "visible";
+
+        $.ajax({
+            type: "POST",
+            url: "php/controller/save-user.php",
+            data: {
+                username: game.data.name,
+                exp: game.data.exp,
+                exp1: game.data.exp1,
+                exp2: game.data.exp2,
+                exp3: game.data.exp3,
+                exp4: game.data.exp4,
+            },
+            dataType: "text"
+        })
+                .success(function (response) {
+                    if (response === "true") {
+                        alert("SAVED");
+                        me.state.change(me.state.MENU);
+                    }
+                    else {
+                        alert(response);
+                    }
+
+                })
+                .fail(function (response) {
+                    alert("Fail");
+                });
     }
 
 });

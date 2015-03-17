@@ -1,17 +1,30 @@
 <?php
+require_once(__DIR__ . "/../model/config.php");
+
 
 function saveUser(){
-    $user = $_SESSION["name"];
+    $exp = filter_input(INPUT_POST, "exp", FILTER_SANITIZE_STRING);
+    $exp1 = filter_input(INPUT_POST, "exp1", FILTER_SANITIZE_STRING);
+    $exp2 = filter_input(INPUT_POST, "exp2", FILTER_SANITIZE_STRING);
+    $exp3 = filter_input(INPUT_POST, "exp3", FILTER_SANITIZE_STRING);
+    $exp4 = filter_input(INPUT_POST, "exp4", FILTER_SANITIZE_STRING);
+    
+//    $query = $_SESSION["connection"]->query("UPDATE users SET "
+//            . "exp = $exp,"
+//            . "exp1 = $exp1,"
+//            . "exp2 = $exp2,"
+//            . "exp3 = $exp3,"
+//            . "exp4 = $exp4 WHERE username = " . $_SESSION["name"]);
     
     $query = $_SESSION["connection"]->query("UPDATE users SET "
-            . "exp = ". $_SESSION["exp"]. ","
-            . "exp1 = ". $_SESSION["exp1"]. ","
-            . "exp2 = ". $_SESSION["exp2"]. ","
-            . "exp3 = ". $_SESSION["exp3"]. ","
-            . "exp4 = ". $_SESSION["exp4"]. " WHERE username = 'bob'");
+            . "exp = 0,"
+            . "exp1 = 1,"
+            . "exp2 = 2,"
+            . "exp3 = 3,"
+            . "exp4 = 4 WHERE username = bob");
     
     if($query){
-        echo "Successfully created user: $username";
+        echo "EXP Saved";
     }else{
         echo "<p>" . $_SESSION["connection"]->error . "</p>";
     }

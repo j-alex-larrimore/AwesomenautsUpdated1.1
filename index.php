@@ -1,18 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-
-//require_once 'php/controller/logout-user.php';
-require_once('php/model/config.php');
-//require_once 'php/controller/create-user.php';
-//require_once 'php/controller/save-user.php';
-//require_once 'php/controller/login-user.php';
-
-
-//if (!isset($_SESSION["connection"])) {
-//    echo "configagain";
-//    
-//}
-
+require_once('php/controller/create-db.php');
 ?>
 
 
@@ -57,35 +45,9 @@ require_once('php/model/config.php');
             </div>
 
 
-            <input type='submit' name='register' id='register' value='Register'>
-            <input type='submit' name='mainmenu' id='mainmenu' value='Main Menu'>
-            <input type='submit' name='load' id='load' value='Load'>
-            <input type ='hidden' name='exp' id='exp' value ='<?php
-            if (isset($_SESSION["exp"])) {
-                echo $_SESSION["exp"];
-            };
-            ?>'>
-            <input type ='hidden' name='exp1' id='exp1' value =<?php
-            if (isset($_SESSION["exp1"])) {
-                echo $_SESSION["exp1"];
-            };
-            ?>>
-            <input type ='hidden' name='exp2' id='exp2' value =<?php
-            if (isset($_SESSION["exp2"])) {
-                echo $_SESSION["exp2"];
-            };
-            ?>>
-            <input type ='hidden' name='exp3' id='exp3' value =<?php
-            if (isset($_SESSION["exp3"])) {
-                echo $_SESSION["exp3"];
-            };
-            ?>>
-            <input type ='hidden' name='exp4' id='exp4' value =<?php
-            if (isset($_SESSION["exp4"])) {
-                echo $_SESSION[""];
-            };
-            ?>>
-
+            <button type='button' id='register'>Register</button>
+            <button type='button' id='load'>Load</button>
+            <button type='button' id='mainmenu'>Main Menu</button>
         </form>
         <div id="state" name='Hi'><?php  ?></div>
         <!-- melonJS Library -->
@@ -146,36 +108,6 @@ require_once('php/model/config.php');
         </script>
 
         <script>
-//            $("#save").bind("click", function () {
-//                    $.ajax({
-//                    type: "POST",
-//                    url: "php/controller/create-user.php",
-//                    data: {username: $('#username').val(), password: $('#username').val()},
-//                    dataType: "text"
-//                })
-//                        .success(function (response) {
-//                            $("#register").bind("click", function () {
-//                $.ajax({
-//                    type: "POST",
-//                    url: "php/controller/create-user.php",
-//                    data: {username: $('#username').val(), password: $('#username').val()},
-//                    dataType: "text"
-//                })
-//                        .success(function (response) {
-//                            console.log(response);
-//                            alert("Data Saved: " + response);
-//                        });
-//                        .failure(function (response) {
-//                    console.log(response);
-//                });
-//            });  console.log(response);
-//                            alert("Data Saved: " + response);
-//                        });
-//                        .failure(function (response) {
-//                    console.log(response);
-//                });
-//            });
-
             $("#register").bind("click", function () {
                 $.ajax({
                     type: "POST",
@@ -187,48 +119,55 @@ require_once('php/model/config.php');
                     dataType: "text"
                 })
                 .success(function (response) {
-                    console.log(response);
-                    alert("Data Saved: " + response);
+                    if(response === "true"){
+                        me.state.change(me.state.PLAY);
+                    }
+                    else{
+                        alert(response);
+                    }
+                    
                 })      
                 .fail(function (response) {
                     alert("Fail");
-                })
-                .done(function() {
-                    alert("Finished");
                 });
                 
             });
-//            $("#load").bind("click", function () {
-//                   $.ajax({
-//                    type: "POST",
-//                    url: "php/controller/create-user.php",
-//                    data: {username: $('#username').val(), password: $('#username').val()},
-//                    dataType: "text"
-//                })
-//                        .success(function (response) {
-//                            console.log(response);
-//                            alert("Data Saved: " + response);
-//                        });
-//                        .failure(function (response) {
-//                    console.log(response);
-//                });
-//            });
-//            $("#mainmenu").bind("click", function () {
-//                   $.ajax({
-//                    type: "POST",
-//                    url: "php/controller/create-user.php",
-//                    data: {username: $('#username').val(), password: $('#username').val()},
-//                    dataType: "text"
-//                })
-//                        .success(function (response) {
-//                            console.log(response);
-//                            alert("Data Saved: " + response);
-//                        });
-//                        .failure(function (response) {
-//                    console.log(response);
-//                });
-//            });
+            $("#load").bind("click", function () {
+                $.ajax({
+                    type: "POST",
+                    url: "php/controller/login-user.php",
+                    data: {
+                        username: $('#username').val(), 
+                        password: $('#password').val()
+                    },
+                    dataType: "text"
+                })
+                .success(function (response) {
+                    if(response === "Invalid username and password"){
+                        alert(response);
+                    }
+                    else{
+                        var data = jQuery.parseJSON(response);
+                        game.data.exp = data["exp"];
+                        game.data.exp1 = data["exp1"];
+                        game.data.exp2 = data["exp2"];
+                        game.data.exp3 = data["exp3"];
+                        game.data.exp4 = data["exp4"];
+                        me.state.change(me.state.SPENDEXP);
+                    }
+                    
+                })      
+                .fail(function (response) {
+                    alert("Fail");
+                });
+                
+            });
+            $("#mainmenu").bind("click", function () {
+                me.state.change(me.state.MENU);
+            });
         </script>
-
     </body>
 </html>
+
+
+
