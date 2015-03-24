@@ -21,12 +21,14 @@ game.ExperienceManager = Object.extend({
             game.data.exp += 1;
         }
         this.gameover = true;
+        me.save.exp = game.data.exp;
+
+
 
         $.ajax({
             type: "POST",
             url: "php/controller/save-user.php",
             data: {
-                username: game.data.name,
                 exp: game.data.exp,
                 exp1: game.data.exp1,
                 exp2: game.data.exp2,
@@ -38,15 +40,14 @@ game.ExperienceManager = Object.extend({
                 .success(function (response) {
                     if (response === "true") {
                         me.state.change(me.state.MENU);
-                    }
-                    else {
+                    } else {
                         alert(response);
                     }
-
                 })
                 .fail(function (response) {
                     alert("Fail");
                 });
+
     }
 
 });

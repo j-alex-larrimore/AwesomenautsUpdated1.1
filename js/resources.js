@@ -18,8 +18,8 @@ game.resources = [
         {name: "treetiles", type:"image", src: "data/img/treetiles.png"},
         {name: "AwesomenautsBG", type:"image", src: "data/img/AwesomenautsBG.png"},
         {name: "minimap", type:"image", src: "data/img/minimap.png"},
-        {name: "load", type:"image", src: "data/img/loadpic.png"},
-        {name: "new", type:"image", src: "data/img/newpic.png"},
+        {name: "load-screen", type:"image", src: "data/img/loadpic.png"},
+        {name: "new-screen", type:"image", src: "data/img/newpic.png"},
         
         
 	/* Atlases 

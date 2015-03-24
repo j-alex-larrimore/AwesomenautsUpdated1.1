@@ -19,12 +19,12 @@ if ($query->num_rows == 1) {
 
     if ($row["password"] === crypt($password, $row["salt"])) {
         $_SESSION["authenticated"] = true;
-        $_SESSION["name"] = $username;
         $array["exp"] = $row["exp"];
         $array["exp1"] = $row["exp1"];
         $array["exp2"] = $row["exp2"];
         $array["exp3"] = $row["exp3"];
         $array["exp4"] = $row["exp4"];
+        $_SESSION["name"] = $username;
         echo json_encode($array);
     } else {
         echo "Invalid username and password";
@@ -33,6 +33,3 @@ if ($query->num_rows == 1) {
     echo "Invalid username and password";
 }
 
-  
-    
-    

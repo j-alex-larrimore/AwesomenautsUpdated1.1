@@ -39,32 +39,9 @@ body {
 }
 
 #load{
-    position: absolute;
-    visibility: hidden;
-}
-
-#save{
-    display: inline-block;
-    text-align: center;
     visibility: hidden;
 }
 
 #register{
-    //position: absolute;
     visibility: hidden;
-}
-
-#passAgain{
-    visibility: hidden;
-}
-
-#state{
-    display: block;
-/*    visibility: hidden;*/
-}
-
-#mainmenu{
-    display: inline-block;
-    text-align: center;
-    /*visibility: hidden;*/
 }
