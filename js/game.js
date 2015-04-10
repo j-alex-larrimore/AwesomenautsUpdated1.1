@@ -15,7 +15,7 @@ var game = {
         playerAttack: 1,
 //                orcBaseDamage: 10,
 //                orcBaseHealth: 100,
-//                orcBaseSpeed: 3,
+//                orcBaseSpeed: 5,
 //                orcBaseDefense: 0,
         playerAttackTimer: 1000,
         enemyCreepAttackTimer: 1000,
@@ -42,7 +42,8 @@ var game = {
         buyscreen: "",
         buytext: "",
         minimap: "",
-        miniPlayer: ""
+        miniPlayer: "",
+        gameover: false
    },
     // Run on page load.
     "onload": function () {

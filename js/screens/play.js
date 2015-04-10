@@ -6,8 +6,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		// reset the score
 		game.data.score = 0;
                 me.levelDirector.loadLevel("level01");
-                 
-                
+               
                 var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
                 me.game.world.addChild(gameTimerManager, 0);
                 
@@ -37,6 +36,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
 		me.game.world.addChild(this.HUD);
+                 game.data.gold += (Number(game.data.exp2) * 10);
 	},
 
 
@@ -50,7 +50,7 @@ game.PlayScreen = me.ScreenObject.extend({
         
         resetPlayer: function(x, y){
             game.data.player = me.pool.pull("player", x, y, {});
-            me.game.world.addChild(game.data.player, 7);
+            me.game.world.addChild(game.data.player, 9);
             game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {});
             me.game.world.addChild(game.data.miniPlayer, 31);
         }

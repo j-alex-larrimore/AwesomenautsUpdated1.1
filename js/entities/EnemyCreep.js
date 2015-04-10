@@ -53,6 +53,7 @@ game.EnemyCreep = me.Entity.extend({
     },
     
     collideHandler: function(response){
+        console.log(response.b.type);
         if(response.b.type==='PlayerBase'){
             this.attacking=true;
             //this.lastAttacking=this.now;

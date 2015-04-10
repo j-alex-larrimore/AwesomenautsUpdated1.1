@@ -4,7 +4,7 @@ game.TitleScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title-screen')), -10); // TODO
-                
+                game.data.win = "";
                 game.data.option1 = new (me.Renderable.extend({
                     init: function(){
                         this._super(me.Renderable, 'init', [270, 240, 300, 50]);
