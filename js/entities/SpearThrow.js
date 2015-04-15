@@ -15,15 +15,22 @@ game.SpearThrow = me.Entity.extend({
         this.attack = game.data.ability3*3;
         this.type = "spear";
         this.facing = facing;
+        this.now = new Date().getTime();
+        this.removeSpear = this.now;
     },
     
     update: function(delta){
+        this.now = new Date().getTime();
         if(this.facing === "left"){
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
              this.flipX(true);
         }else{
             this.body.vel.x += this.body.accel.x * me.timer.tick;
              this.flipX(false);
+        }
+        
+        if(this.now - this.removeSpear >= 8000){
+            me.game.world.removeChild(this);
         }
         
         me.collision.check(this, true, this.collideHandler.bind(this), true);

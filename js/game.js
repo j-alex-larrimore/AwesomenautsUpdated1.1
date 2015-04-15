@@ -7,18 +7,77 @@ var game = {
         score: 0,
         option1: "",
         option2: "",
-        enemyBaseHealth: 1,
-        playerBaseHealth: 1,
-        enemyCreepHealth: 10,
+        character: "",
+        enemyBaseHealth: 5,
+        playerBaseHealth: 5,
+        enemyCreepHealth: 5,
+        playerCreepHealth: 3,
         playerHealth: 10,
         enemyCreepAttack: 1,
+        playerCreepAttack: 1,
         playerAttack: 1,
-//                orcBaseDamage: 10,
-//                orcBaseHealth: 100,
-//                orcBaseSpeed: 5,
-//                orcBaseDefense: 0,
+        
+        orcStartDamage: 10,
+        orcStartHealth: 100,
+        orcStartSpeed: 5,
+        orcStartDefense: 0,
+        orcStartAttackTimer: 1000,
+        orcStartRespawnTimer: 15000,
+        
+        archerStartDamage: 10,
+        archerStartHealth: 100,
+        archerStartSpeed: 5,
+        archerStartDefense: 0,
+        archerStartAttackTimer: 1000,
+        archerStartRespawnTimer: 15000,
+        
+        wizardStartDamage: 10,
+        wizardStartHealth: 100,
+        wizardStartSpeed: 5,
+        wizardStartDefense: 0,
+        wizardStartAttackTimer: 1000,
+        wizardStartRespawnTimer: 15000,
+        
+        ninjaStartDamage: 10,
+        ninjaStartHealth: 100,
+        ninjaStartSpeed: 5,
+        ninjaStartDefense: 0,
+        ninjaStartAttackTimer: 1000,
+        ninjaStartRespawnTimer: 15000,
+        
+        skeletonStartDamage: 10,
+        skeletonStartHealth: 100,
+        skeletonStartSpeed: 5,
+        skeletonStartDefense: 0,
+        skeletonStartAttackTimer: 1000,
+        skeletonStartRespawnTimer: 15000,
+        
+        plumberStartDamage: 10,
+        plumberStartHealth: 100,
+        plumberStartSpeed: 5,
+        plumberStartDefense: 0,
+        plumberStartAttackTimer: 1000,
+        plumberStartRespawnTimer: 15000,
+        
+        cavemanStartDamage: 10,
+        cavemanStartHealth: 100,
+        cavemanStartSpeed: 5,
+        cavemanStartDefense: 0,
+        cavemanStartAttackTimer: 1000,
+        cavemanStartRespawnTimer: 15000,
+        
+        fairyStartDamage: 10,
+        fairyStartHealth: 100,
+        fairyStartSpeed: 5,
+        fairyStartDefense: 0,
+        fairyStartAttackTimer: 1000,
+        fairyStartRespawnTimer: 15000,
+
+
         playerAttackTimer: 1000,
         enemyCreepAttackTimer: 1000,
+        playerCreepAttackTimer: 1000,
+        playerRespawnTimer: 15000,
         playerMoveSpeed: 5,
         creepMoveSpeed: 5,
         gameTimerManager: "",
@@ -43,12 +102,17 @@ var game = {
         buytext: "",
         minimap: "",
         miniPlayer: "",
+        teammate1: "",
+        teammate2: "",
+        enemy1: "",
+        enemy2: "",
+        enemy3: "",
         gameover: false
    },
     // Run on page load.
     "onload": function () {
         // Initialize the video.
-        if (!me.video.init("screen", me.video.CANVAS, 1067, 600, true, '1.0')) {
+        if (!me.video.init("screen", me.video.CANVAS, 1400, 768, true, '1.0')) {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
@@ -84,6 +148,9 @@ var game = {
         me.pool.register("PlayerBase", game.PlayerBaseEntity);
         me.pool.register("EnemyBase", game.EnemyBaseEntity);
         me.pool.register("EnemyCreep", game.EnemyCreep, true);
+        me.pool.register("PlayerCreep", game.PlayerCreep, true);
+        me.pool.register("Teammate", game.Teammate, true);
+        me.pool.register("Enemy", game.Enemy, true);
         me.pool.register("GameTimerManager", game.GameTimerManager);
         me.pool.register("HeroDeathManager", game.HeroDeathManager);
         me.pool.register("ExperienceManager", game.ExperienceManager);
@@ -91,6 +158,10 @@ var game = {
         me.pool.register("spear", game.SpearThrow, true);
         me.pool.register("minimap", game.MiniMap, true);
         me.pool.register("miniplayer", game.MiniPlayerLocation, true);
+        me.pool.register("miniEnemy", game.MiniEnemyLocation, true);
+        me.pool.register("miniTeam", game.MiniTeamLocation, true);
+        me.pool.register("miniECreep", game.MiniECreepLocation, true);
+        me.pool.register("miniPCreep", game.MiniPCreepLocation, true);
 
         me.state.set(me.state.MENU, new game.TitleScreen());
         me.state.set(me.state.PLAY, new game.PlayScreen());

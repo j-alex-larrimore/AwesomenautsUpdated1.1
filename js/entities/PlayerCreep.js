@@ -1,4 +1,4 @@
-game.EnemyCreep = me.Entity.extend({
+game.PlayerCreep = me.Entity.extend({
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, {
                 image: "pCreep",
@@ -11,7 +11,7 @@ game.EnemyCreep = me.Entity.extend({
                 }
             }]);
         this.anchorPoint.set(0.5, 1.0);
-        this.health = game.data.enemyCreepHealth;
+        this.health = game.data.playerCreepHealth;
         this.alwaysUpdate = true;
         //this.attacking lets us know if the enemy is currently attacking
         this.attacking = false;
@@ -20,17 +20,19 @@ game.EnemyCreep = me.Entity.extend({
         //keep track of the last time our creep hit anything
         this.lastHit = new Date().getTime();
         this.now = new Date().getTime();
-        this.body.setVelocity(3, 20);
+        this.deathTimer = this.now;
         this.dead = false;
-        this.type = "EnemyCreep";
+        this.body.setVelocity(3, 20);
 
-        this.mini = me.pool.pull("miniECreep", 10, 10, 3, {});
+        this.type = "PlayerCreep";
+
+        this.mini = me.pool.pull("miniPCreep", 10, 10, 3, {});
         me.game.world.addChild(this.mini, 31);
 
-        this.renderable.addAnimation("walk", [60, 61, 62, 63, 64, 65, 66, 67], 80);
-        this.renderable.addAnimation("attack", [68, 69, 70, 71, 72, 73, 74, 75], 80);
-        this.renderable.addAnimation("die", [76, 77, 78, 79], 100);
-        this.renderable.addAnimation("dead", [79]);
+        this.renderable.addAnimation("walk", [40, 41, 42, 43, 44, 45, 46, 47], 80);
+        this.renderable.addAnimation("attack", [48, 49, 50, 51, 52, 53, 54, 55], 80);
+        this.renderable.addAnimation("die", [56, 57, 58, 59], 100);
+        this.renderable.addAnimation("dead", [59]);
         this.renderable.setCurrentAnimation("walk");
 
     },
@@ -41,7 +43,8 @@ game.EnemyCreep = me.Entity.extend({
         if (!game.data.gameover) {
             this.now = new Date().getTime();
             this.mini.updateMini(this.pos.x, this.pos.y);
-            this.body.vel.x -= this.body.accel.x * me.timer.tick;
+            this.body.vel.x += this.body.accel.x * me.timer.tick;
+
             if (this.dead && this.now - this.deathTimer >= 3000) {
                 me.game.world.removeChild(this);
             }
@@ -51,10 +54,9 @@ game.EnemyCreep = me.Entity.extend({
                 this.setAnimation();
 
             }
-        }else{
-            
+        }
+        else{
             this.body.vel.x = 0;
-        
         }
         this.body.update(delta);
         this._super(me.Entity, "update", [delta]);
@@ -80,20 +82,20 @@ game.EnemyCreep = me.Entity.extend({
         this.deathTimer = this.now;
     },
     collideHandler: function (response) {
-        if ((response.b.type === 'PlayerBase' || response.b.type === 'PlayerCreep' || response.b.type === 'Teammate' || response.b.type === 'PlayerEntity') && !response.b.dead && !response.b.dying) {
+        if ((response.b.type === 'EnemyBaseEntity' || response.b.type === 'EnemyCreep' || response.b.type === 'Enemy') && !response.b.dead && !response.b.dying) {
             var xdif = this.pos.x - response.b.pos.x;
             this.attacking = true;
-            if (xdif > 0) {
+            if (xdif < 0) {
                 //keeps moving the creep to the right to maintain its position
                 this.body.vel.x = 0;
             }
             //checks that it has been at least 1 second since this creep hit something
-            if ((this.now - this.lastHit >= 1000) && xdif > 0 && !this.dead) {
+            if ((this.now - this.lastHit >= 1000) && xdif < 0 && !this.dead) {
                 //updates the lasthit timer
                 this.lastHit = this.now;
                 //makes the player call its loseHealth function and passes it a 
                 //damage of 1
-                response.b.loseHealth(game.data.enemyCreepAttack);
+                response.b.loseHealth(game.data.playerCreepAttack);
             }
         } 
     }

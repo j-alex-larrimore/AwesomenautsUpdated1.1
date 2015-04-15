@@ -1,7 +1,7 @@
-game.MiniPlayerLocation = me.Entity.extend({
-    init: function(x, y, settings){
+game.MiniTeamLocation = me.Entity.extend({
+    init: function(x, y, r, settings){
         this.settings = settings;
-        this.r = 5;
+        this.r = r;
         this.diameter = (this.r+2)*2;
         this.anchorPoint = new me.Vector2d(0, 0);
         this.loc = x, y;
@@ -13,7 +13,7 @@ game.MiniPlayerLocation = me.Entity.extend({
         this.image = me.video.createCanvas(this.settings.width, this.settings.height);
         var ctx = me.video.renderer.getContext2d(this.image);
         
-        ctx.fillStyle = "rgba(0, 192, 32, 0.75)";
+        ctx.fillStyle = "green";
         ctx.strokeStyle = "blue";
         ctx.lineWidth = 2;
         
@@ -43,9 +43,9 @@ game.MiniPlayerLocation = me.Entity.extend({
                 );
     },
     
-    update: function(){
-        this.pos.x = (10 + (game.data.player.pos.x *0.062));
-        this.pos.y = (10 + (game.data.player.pos.y * 0.06));
+    updateMini: function(x, y){
+        this.pos.x = (10 + (x *0.062));
+        this.pos.y = (10 + (y * 0.06));
         return true;
     }
     
